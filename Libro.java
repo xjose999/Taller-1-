@@ -1,4 +1,7 @@
+import java.util.Scanner;
+
 public class Libro {
+    // Atributos
     String titulo;
     String autor;
     int numeroPaginas;
@@ -12,24 +15,42 @@ public class Libro {
 
     // 2. Constructor parametrizado
     public Libro(String titulo, String autor, int numeroPaginas) {
-        this.titulo = titulo; // this identifica al atributo de la clase
+        this.titulo = titulo;
         this.autor = autor;
         this.numeroPaginas = numeroPaginas;
     }
 
-    // 3. Método para mostrar detalles
-    public void mostrarDetalles() {
-        System.out.println("Libro: " + titulo + " | Autor: " + autor + " | Páginas: " + numeroPaginas);
+    // 3. Método toString para mostrar detalles
+    @Override
+    public String toString() {
+        return "DETALLES DEL LIBRO:\n" +
+                "Título: " + titulo + "\n" +
+                "Autor: " + autor + "\n" +
+                "Páginas: " + numeroPaginas;
     }
 
+    // Método principal para ejecutar la aplicación
     public static void main(String[] args) {
-        // Uso del constructor por defecto
-        Libro libro1 = new Libro();
+        Scanner teclado = new Scanner(System.in);
 
-        // Uso del constructor parametrizado
-        Libro libro2 = new Libro("Cien años de soledad", "Gabriel García Márquez", 471);
+        System.out.println("--- Registro de nuevo libro ---");
 
-        libro1.mostrarDetalles();
-        libro2.mostrarDetalles();
+        // Ingreso de datos por consola
+        System.out.print("Introduce el título: ");
+        String t = teclado.nextLine();
+
+        System.out.print("Introduce el autor: ");
+        String a = teclado.nextLine();
+
+        System.out.print("Introduce el número de páginas: ");
+        int p = teclado.nextInt();
+
+        // Creamos el objeto usando el constructor parametrizado con los datos ingresados
+        Libro miLibro = new Libro(t, a, p);
+
+        // Mostramos el resultado usando el toString
+        System.out.println("\n" + miLibro.toString());
+
+        teclado.close();
     }
 }
